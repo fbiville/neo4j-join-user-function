@@ -1,7 +1,5 @@
 package example;
 
-import org.neo4j.graphdb.GraphDatabaseService;
-import org.neo4j.procedure.Context;
 import org.neo4j.procedure.Name;
 import org.neo4j.procedure.UserFunction;
 

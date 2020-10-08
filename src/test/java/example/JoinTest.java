@@ -13,9 +13,6 @@ import org.neo4j.harness.junit.rule.Neo4jRule;
 import static org.junit.Assert.assertThat;
 
 
-/**
- * Unit test for simple App.
- */
 public class JoinTest {
 
     @Rule
