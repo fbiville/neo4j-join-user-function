@@ -1,6 +1,5 @@
 package example;
 
-import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.neo4j.driver.Config;
@@ -13,7 +12,8 @@ import org.neo4j.harness.junit.extension.Neo4jExtension;
 
 import java.util.logging.LogManager;
 
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 
 public class JoinTest {
@@ -34,10 +34,11 @@ public class JoinTest {
 
     @Test
     void joins_strings(Neo4j neo4j) {
-        try (Driver driver = GraphDatabase.driver(neo4j.boltURI(), unencrypted)) {
-            Session session = driver.session();
-            Result result = session.run("RETURN example.join(['A','quick','brown','fox'],' ') as sentence");
-            assertThat(result.single().get("sentence").asString(), CoreMatchers.equalTo("A quick brown fox"));
+        try (Driver driver = GraphDatabase.driver(neo4j.boltURI(), unencrypted);
+             Session session = driver.session()) {
+
+            Result result = session.run("RETURN example.join(['A','quick','brown','fox'],' ') AS sentence");
+            assertThat(result.single().get("sentence").asString(), equalTo("A quick brown fox"));
         }
     }
 }
