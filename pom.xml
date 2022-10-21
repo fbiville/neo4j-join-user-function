@@ -41,6 +41,7 @@
             <artifactId>procedure-compiler</artifactId>
             <version>${neo4j.version}</version>
             <scope>compile</scope>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
